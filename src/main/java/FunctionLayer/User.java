@@ -16,6 +16,7 @@ public class User {
     private String email;
     private String password; // Should be hashed and all
     private String role;
+    
 
     public String getEmail() {
         return email;
