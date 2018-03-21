@@ -17,7 +17,6 @@ public class Order extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-
         return "order";
     }
 }
