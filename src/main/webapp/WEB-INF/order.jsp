@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Place your order here</h1>
-         <form name="register" action="FrontController" method="POST">
+         <form name="register" action="MakeBricks" method="POST">
             <input type="number" name="length" required="" placeholder="Length"/>
             <input type="number" name="width" required="" placeholder="Width"/>
             <input type="number" name="height" required="" placeholder="Height"/>

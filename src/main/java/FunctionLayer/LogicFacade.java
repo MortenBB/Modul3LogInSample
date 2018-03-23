@@ -17,5 +17,11 @@ public class LogicFacade {
         UserMapper.createUser( user );
         return user;
     }
+    
+    public static Order createOrder(int lBricks, int mBricks, int sBricks) throws LoginSampleException{
+        Order order = new Order(sBricks, mBricks, lBricks, false);
+        UserMapper.createOrder( order );
+        return order;
+    }
 
 }

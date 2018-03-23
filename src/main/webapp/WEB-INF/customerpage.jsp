@@ -14,5 +14,6 @@
     <body>
         <h1>Hello <%=request.getParameter( "email" )%> </h1>
         You are now logged in as a customer of our wonderful site.
+         <a href="FrontController?command=order"> Bestil her </a>
     </body>
 </html>

@@ -17,20 +17,11 @@ public class Order {
     private int LBrick;
     private boolean status;
 
-    public Order(int id, int SBrick, int MBrick, int LBrick, boolean status) {
-        this.id = id;
+    public Order(int SBrick, int MBrick, int LBrick, boolean status) {        
         this.SBrick = SBrick;
         this.MBrick = MBrick;
         this.LBrick = LBrick;
         this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getSBrick() {
@@ -57,7 +48,15 @@ public class Order {
         this.LBrick = LBrick;
     }
 
-    public boolean isStatus() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean getStatus() {
         return status;
     }
 
@@ -67,6 +66,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", sBrick=" + SBrick + ", mBrick=" + MBrick + ", lBrick=" + LBrick + ", status=" + status + '}';
+        return "Order{" + ", sBrick=" + SBrick + ", mBrick=" + MBrick + ", lBrick=" + LBrick + ", status=" + status + '}';
     }
 }
