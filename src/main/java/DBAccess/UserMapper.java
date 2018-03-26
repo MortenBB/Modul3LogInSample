@@ -58,15 +58,16 @@ public class UserMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
- public static void createOrder( Order order ) throws LoginSampleException {
+ public static void createOrder( Order order, User user ) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (SBrick, MBrick, LBrick, status) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO orders (id, SBrick, MBrick, LBrick, status) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
-            ps.setInt( 1, order.getSBrick());
-            ps.setInt( 2, order.getMBrick());
-            ps.setInt( 3, order.getLBrick());
-            ps.setBoolean( 4, order.getStatus());
+            ps.setInt( 1, user.getId());
+            ps.setInt( 2, order.getSBrick());
+            ps.setInt( 3, order.getMBrick());
+            ps.setInt( 4, order.getLBrick());
+            ps.setBoolean( 5, order.getStatus());
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();

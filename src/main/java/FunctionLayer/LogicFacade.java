@@ -1,5 +1,6 @@
 package FunctionLayer;
 
+import javax.servlet.http.HttpSession;
 import DBAccess.UserMapper;
 
 /**
@@ -18,9 +19,9 @@ public class LogicFacade {
         return user;
     }
     
-    public static Order createOrder(int lBricks, int mBricks, int sBricks) throws LoginSampleException{
-        Order order = new Order(sBricks, mBricks, lBricks, false);
-        UserMapper.createOrder( order );
+    public static Order createOrder(int lBricks, int mBricks, int sBricks, User u) throws LoginSampleException{
+        Order order = new Order(sBricks, mBricks, lBricks, false);      
+        UserMapper.createOrder( order, u );
         return order;
     }
 

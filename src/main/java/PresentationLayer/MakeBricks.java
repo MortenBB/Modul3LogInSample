@@ -5,6 +5,7 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.User;
 import DBAccess.UserMapper;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
@@ -19,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,35 +46,32 @@ public class MakeBricks extends HttpServlet {
         int width = Integer.parseInt(request.getParameter("width"));
         int height = Integer.parseInt(request.getParameter("height"));
         int sBricksl = cal.calculatorS(length);
-        System.out.println("1");
+        System.out.println(sBricksl);
         int mBricksl = cal.calculatorM(length);
-        System.out.println("2");
+        System.out.println(mBricksl);
         int lBricksl = cal.calculatorL(length);
-        System.out.println("3");
+        System.out.println(lBricksl);
         int sBricksw = cal.calculatorS(width);
-        System.out.println("4");
+        System.out.println(sBricksw);
         int mBricksw = cal.calculatorM(width);
-        System.out.println("5");
+        System.out.println(mBricksw);
         int lBricksw = cal.calculatorL(width);
-        System.out.println("6");
+        System.out.println(lBricksw);
         int mBricks2l = cal.calculator2M(length);
-        System.out.println("7");
+        System.out.println(mBricks2l);
         int lBricks2l = cal.calculator2L(length);
-        System.out.println("8");
+        System.out.println(lBricks2l);
         int mBricks2w = cal.calculator2M(width);
-        System.out.println("9");
+        System.out.println(mBricks2w);
         int lBricks2w = cal.calculator2L(width);
-        System.out.println("10");
-        int totalLBricks = cal.totalLBricks(height, lBricksl, lBricksw, lBricks2l, lBricks2w);
-        System.out.println("11");
-        int totalMBricks = cal.totalMBricks(height, mBricksl, mBricksw, mBricks2l, mBricks2w);
-        System.out.println("12");
-        int totalSBricks = cal.totalSBricks(height, sBricksl, sBricksw);
-        System.out.println("13");
-        Order order = new Order(totalSBricks, totalMBricks, totalLBricks, false);
-        System.out.println("14");
-        UserMapper.createOrder(order);
-        System.out.println("15");
+        System.out.println(lBricks2w);
+        int totalLBricks = cal.totalLBricks(height, lBricksl, lBricksw, lBricks2l, lBricks2w);       
+        int totalMBricks = cal.totalMBricks(height, mBricksl, mBricksw, mBricks2l, mBricks2w);       
+        int totalSBricks = cal.totalSBricks(height, sBricksl, sBricksw);       
+        Order order = new Order(totalSBricks, totalMBricks, totalLBricks, false);                      
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("user");
+        LogicFacade.createOrder(lBricksw, mBricksw, sBricksw, u);        
         response.sendRedirect("confirmation.jsp");
     }
 
