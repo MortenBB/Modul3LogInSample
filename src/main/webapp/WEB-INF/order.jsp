@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Place your order here</h1>
-         <form name="register" action="MakeBricks" method="POST">
+         <form name="order" action="MakeBricks" method="POST">
             <input type="number" name="length" required="" placeholder="Length" required/>
             <input type="number" name="width" required="" placeholder="Width" min="4" required/>
             <input type="number" name="height" required="" placeholder="Height" required/>

@@ -37,8 +37,9 @@ public class MakeBricks extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, LoginSampleException {
+            throws ServletException, IOException, LoginSampleException{
         Calculator cal = new Calculator();
         response.setContentType("text/html;charset=UTF-8");
 
@@ -60,8 +61,11 @@ public class MakeBricks extends HttpServlet {
         int totalSBricks = cal.totalSBricks(height, sBricksl, sBricksw);  
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
-        LogicFacade.createOrder(totalLBricks, totalMBricks, totalSBricks, u);        
-        response.sendRedirect("confirmation.jsp");
+        LogicFacade.createOrder(totalLBricks, totalMBricks, totalSBricks, u);
+            Command action = Command.from( request );
+            String view = action.execute( request, response );
+            request.getRequestDispatcher( "/WEB-INF/" + view + ".jsp" ).forward( request, response );        
+        //response.sendRedirect("confirmation.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
