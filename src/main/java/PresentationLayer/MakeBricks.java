@@ -13,8 +13,10 @@ import FunctionLayer.Calculator;
 import FunctionLayer.LoginSampleException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +41,7 @@ public class MakeBricks extends HttpServlet {
      */
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, LoginSampleException{
+            throws ServletException, IOException, LoginSampleException, SQLException, ClassNotFoundException{
         Calculator cal = new Calculator();
         response.setContentType("text/html;charset=UTF-8");
 
@@ -62,9 +64,8 @@ public class MakeBricks extends HttpServlet {
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         LogicFacade.createOrder(totalLBricks, totalMBricks, totalSBricks, u);
-            Command action = Command.from( request );
-            String view = action.execute( request, response );
-            request.getRequestDispatcher( "/WEB-INF/" + view + ".jsp" ).forward( request, response );        
+        RequestDispatcher dispatcher=getServletContext().getRequestDispatcher( "/WEB-INF/confirmation.jsp" );
+        dispatcher.forward( request, response );
         //response.sendRedirect("confirmation.jsp");
     }
 
@@ -81,7 +82,13 @@ public class MakeBricks extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(MakeBricks.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MakeBricks.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (LoginSampleException ex) {
             Logger.getLogger(MakeBricks.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,7 +106,13 @@ public class MakeBricks extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(MakeBricks.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MakeBricks.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (LoginSampleException ex) {
             Logger.getLogger(MakeBricks.class.getName()).log(Level.SEVERE, null, ex);
         }

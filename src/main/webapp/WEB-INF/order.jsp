@@ -17,7 +17,7 @@
             <input type="number" name="length" required="" placeholder="Length" required/>
             <input type="number" name="width" required="" placeholder="Width" min="4" required/>
             <input type="number" name="height" required="" placeholder="Height" required/>
-            <input type="submit" name="btn1" value="Order"/>
+            <input type="submit" name="btn1" value="Order"/>           
          </form>
     </body>
 </html>

@@ -1,7 +1,10 @@
 package FunctionLayer;
 
+import DBAccess.OrderMapper;
 import javax.servlet.http.HttpSession;
 import DBAccess.UserMapper;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * The purpose of LogicFacade is to...
@@ -19,10 +22,17 @@ public class LogicFacade {
         return user;
     }
     
-    public static Order createOrder(int lBricks, int mBricks, int sBricks, User u) throws LoginSampleException{
+    public static Order createOrder(int lBricks, int mBricks, int sBricks, User u) throws SQLException, ClassNotFoundException{
         Order order = new Order(sBricks, mBricks, lBricks, false);      
-        UserMapper.createOrder( order, u );
+        OrderMapper.createOrder( order, u );
         return order;
+    }
+    public static ArrayList<Order> getOrders() throws ClassNotFoundException, SQLException{
+     return OrderMapper.getOrders();
+    }
+  
+    public static ArrayList<Order> getOrders(User u) throws ClassNotFoundException, SQLException{
+        return OrderMapper.getOrders(u);
     }
 
 }

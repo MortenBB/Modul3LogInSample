@@ -58,23 +58,5 @@ public class UserMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
- public static void createOrder( Order order, User user ) throws LoginSampleException {
-        try {
-            Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (id, SBrick, MBrick, LBrick, status) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
-            ps.setInt( 1, user.getId());
-            ps.setInt( 2, order.getSBrick());
-            ps.setInt( 3, order.getMBrick());
-            ps.setInt( 4, order.getLBrick());
-            ps.setBoolean( 5, order.getStatus());
-            ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-            int id = ids.getInt( 1 );
-            order.setId( id );
-        } catch ( SQLException | ClassNotFoundException ex ) {
-            throw new LoginSampleException( ex.getMessage() );
-        }
-    }
+
 }
