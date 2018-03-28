@@ -45,11 +45,12 @@ public class OrderMapper {
         PreparedStatement ps = con.prepareStatement(SQL);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
+            int id = rs.getInt("order_id");
             int SBricks = rs.getInt("SBrick");
             int MBricks = rs.getInt("MBrick");
             int LBricks = rs.getInt("LBrick");
             boolean status = rs.getBoolean("status");
-            Order order = new Order(SBricks, MBricks, LBricks, status);
+            Order order = new Order(id, SBricks, MBricks, LBricks, status);
             orders.add(order);
         }
         return orders;
@@ -59,18 +60,29 @@ public class OrderMapper {
         int id = u.getId();
         ArrayList<Order> orders = new ArrayList();
         Connection con = Connector.connection();
-        String SQL = "SELECT * FROM orders"+ "WHERE id=?";
+        String SQL = "SELECT * FROM orders " + "WHERE id=?";
         PreparedStatement ps = con.prepareStatement(SQL);
-        ps.setInt( 1, id );
+        ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
+            int orderId = rs.getInt("id");
             int SBricks = rs.getInt("SBrick");
             int MBricks = rs.getInt("MBrick");
             int LBricks = rs.getInt("LBrick");
             boolean status = rs.getBoolean("status");
-            Order order = new Order(SBricks, MBricks, LBricks, status);
+            Order order = new Order(orderId, SBricks, MBricks, LBricks, status);
             orders.add(order);
         }
         return orders;
     }
+
+    public static void updateOrder(int id) throws ClassNotFoundException, SQLException {
+        Connection con = Connector.connection();
+        String SQL = "update orders set status = ? where order_id = ?";
+        PreparedStatement ps = con.prepareStatement(SQL);
+        ps.setBoolean(1, true);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+    }
+
 }

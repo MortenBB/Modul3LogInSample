@@ -5,19 +5,27 @@ package FunctionLayer;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Morten
  */
 public class Order {
+
     private int id;
     private int SBrick;
     private int MBrick;
     private int LBrick;
     private boolean status;
 
-    public Order(int SBrick, int MBrick, int LBrick, boolean status) {        
+    public Order(int id, int SBrick, int MBrick, int LBrick, boolean status) {
+        this.id = id;
+        this.SBrick = SBrick;
+        this.MBrick = MBrick;
+        this.LBrick = LBrick;
+        this.status = status;
+    }
+
+    public Order(int SBrick, int MBrick, int LBrick, boolean status) {
         this.SBrick = SBrick;
         this.MBrick = MBrick;
         this.LBrick = LBrick;
@@ -66,6 +74,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + ", sBrick=" + SBrick + ", mBrick=" + MBrick + ", lBrick=" + LBrick + ", status=" + status + '}';
+        return "Order:" + "id= " + id + ", Small bricks= " + SBrick + ", medium bricks=" + MBrick + ", large bricks=" + LBrick + ", shipped=" + status;
     }
 }

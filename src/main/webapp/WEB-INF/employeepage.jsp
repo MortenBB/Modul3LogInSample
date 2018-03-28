@@ -15,6 +15,6 @@
         
         <h1>Hello <%=request.getParameter( "email")%> </h1>
         You are now logged in as a EMPLOYEE of our wonderful site.
-        <a href="FrontController?command=allOrders"> View all orders </a>
+        <a href="FrontController?command=allOrdersEmp"> View all orders </a>
     </body>
 </html>
