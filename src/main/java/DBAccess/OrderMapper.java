@@ -65,7 +65,7 @@ public class OrderMapper {
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            int orderId = rs.getInt("id");
+            int orderId = rs.getInt("order_id");
             int SBricks = rs.getInt("SBrick");
             int MBricks = rs.getInt("MBrick");
             int LBricks = rs.getInt("LBrick");
@@ -81,7 +81,7 @@ public class OrderMapper {
         String SQL = "update orders set status = ? where order_id = ?";
         PreparedStatement ps = con.prepareStatement(SQL);
         ps.setBoolean(1, true);
-        ps.setInt(1, id);
+        ps.setInt(2, id);
         ps.executeUpdate();
     }
 

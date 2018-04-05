@@ -12,9 +12,12 @@ import java.sql.SQLException;
 public class Connector {
 
     //private static final String URL = "jdbc:mysql://46.101.253.149:3306/useradmin";
-    private static final String URL = "jdbc:mysql://localhost:3306/useradmin?serverTimezone=UTC";
-    private static final String USERNAME = "morten_lego";
-    private static final String PASSWORD = "bank3*andyouarein";
+//    private static final String URL = "jdbc:mysql://localhost:3306/useradmin?serverTimezone=UTC";
+//    private static final String USERNAME = "morten_lego";
+//    private static final String PASSWORD = "bank3*andyouarein";
+    private static final String URL = "jdbc:mysql://46.101.101.94/useradmin?autoReconnect=true&serverTimezone=CET";
+    private static final String USERNAME = "ruben";
+    private static final String PASSWORD = "1234";
 
     private static Connection singleton;
 
